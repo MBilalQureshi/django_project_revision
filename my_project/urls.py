@@ -15,8 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+# Here we are giving the hello_world/views.py file an alias of index_views.
+# In a one-app project, this would not be strictly necessary. However,
+# in a multiple-app project using descriptive alias names makes your urls.py file much easier to read and maintain.
+from hello_world import views as index_views
 
 urlpatterns = [
+    path('', index_views.index, name='index'),
     path('admin/', admin.site.urls),
 ]
